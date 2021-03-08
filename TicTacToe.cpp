@@ -3,10 +3,11 @@
 
 #define CLS() (system("cls"))
 #define PAUSE() (system("pause"))
-#define SINGLE_PLAYER_MODE 1
-#define TWO_PLAYER_MODE 2
 #define OPPONENT 1
 #define PLAYER 2
+#define PIXEL_RATIO 1
+#define SCREEN_WIDTH 600
+#define SCREEN_HRIGHT 620
 
 class TicTacToe : public olc::PixelGameEngine
 {
@@ -24,7 +25,7 @@ public:
     bool OnUserUpdate(float fElapsedTime) override
     {
         Clear(olc::BLACK);
-        DrawLine(10, 10, 590, 10);
+        displayBoard();
         return true;
     }
 
@@ -38,8 +39,48 @@ private:
     short PLAYER_TWO = 2;
     short *CURRENT_PLAYER = &PLAYER_ONE;
 
-    // TODO: implement Dispaly Board
-    // TODO: implement getInput function
+    void displayBoard()
+    {
+        /* Display the board on to the screen */
+        // Draw the horizontal line
+        DrawLine(10, 10, 590, 10);
+        DrawLine(10, 210, 590, 210);
+        DrawLine(10, 410, 590, 410);
+        DrawLine(10, 610, 590, 610);
+        // Draw the vertical lines
+        DrawLine(10, 10, 10, 610);
+        DrawLine(210, 10, 210, 610);
+        DrawLine(410, 10, 410, 610);
+        DrawLine(590, 10, 590, 610);
+        // Draw the players
+        for (short row = 0; row < 3; row++)
+        {
+            for (short col = 0; col < 3; col++)
+            {
+                if (!board[row][col])
+                {
+                    continue;
+                }
+                else if (board[row][col] == OPPONENT)
+                {
+                    // TODO: Implement drawing of the human
+                }
+                else {
+                    // TODO: implement drawing of the computer
+                }
+            }
+        }
+    }
+
+    void drawCircle(int32_t x, int32_t y)
+    {
+        // Draw the player represented by the circle
+    }
+
+    void getUserInput()
+    {
+        /* Detect and pass the user input */
+    }
 
     short isFree(short x, short y)
     {
@@ -217,10 +258,10 @@ private:
     }
 };
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
     TicTacToe tic;
-    if (tic.Construct(600, 600, 1, 1))
+    if (tic.Construct(SCREEN_WIDTH, SCREEN_HRIGHT, PIXEL_RATIO, PIXEL_RATIO))
         tic.Start();
     return 0;
 }
