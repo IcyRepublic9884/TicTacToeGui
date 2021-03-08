@@ -1,13 +1,13 @@
 #define OLC_PGE_APPLICATION
 #include "olcPixelGameEngine.h"
 
-#define CLS() (system("cls"))
-#define PAUSE() (system("pause"))
+// NOTE: the opponent is the human player and 
+// the player is the computer
 #define OPPONENT 1
 #define PLAYER 2
 #define PIXEL_RATIO 1
 #define SCREEN_WIDTH 600
-#define SCREEN_HRIGHT 620
+#define SCREEN_HRIGHT 600
 
 class TicTacToe : public olc::PixelGameEngine
 {
@@ -31,7 +31,7 @@ public:
 
 private:
     short board[3][3] = {
-        {0, 0, 0},
+        {1, 0, 0},
         {0, 0, 0},
         {0, 0, 0},
     };
@@ -42,16 +42,8 @@ private:
     void displayBoard()
     {
         /* Display the board on to the screen */
-        // Draw the horizontal line
-        DrawLine(10, 10, 590, 10);
-        DrawLine(10, 210, 590, 210);
-        DrawLine(10, 410, 590, 410);
-        DrawLine(10, 610, 590, 610);
-        // Draw the vertical lines
-        DrawLine(10, 10, 10, 610);
-        DrawLine(210, 10, 210, 610);
-        DrawLine(410, 10, 410, 610);
-        DrawLine(590, 10, 590, 610);
+        // TODO: Draw the horizontal line
+        // TODO: Draw the vertical lines
         // Draw the players
         for (short row = 0; row < 3; row++)
         {
@@ -63,19 +55,18 @@ private:
                 }
                 else if (board[row][col] == OPPONENT)
                 {
-                    // TODO: Implement drawing of the human
+                    drawCircle(row, col);
                 }
-                else {
+                else
+                {
                     // TODO: implement drawing of the computer
                 }
             }
         }
     }
 
-    void drawCircle(int32_t x, int32_t y)
-    {
-        // Draw the player represented by the circle
-    }
+    // TODO: add draw circle func
+    // TODO: add draw X func
 
     void getUserInput()
     {
